@@ -8,8 +8,9 @@ export default function App() {
   function saveInputText(event) {
     setInputText(event.target.value)
   }
+  const [roomText, setRoomText] = useState('')
   return (
-    <HeadderContext.Provider value={{ inputText }}>
+    <HeadderContext.Provider value={{ inputText,roomText, setRoomText }}>
       <div className="pb-80 py-10 gap-y-4 flex flex-col justify-center items-center  bg-gray-800 text-white">
         <Header />
         <p className="text-purple-300">
@@ -33,11 +34,11 @@ export default function App() {
         <p
           className="text-green-600">
           Reply from the Secret Room:
+          
         </p>
-      
 
-
-
+        {roomText === '' && (<p className="text-yellow-500">⏳ Waiting for a message...</p>)}
+        {roomText != '' && (<p className="text-yellow-500">✅{roomText}</p>)}
 
         <Castle />
 
